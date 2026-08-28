@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AI Project Hub</title>
+
+<style>
+*{
+box-sizing:border-box;
+margin:0;
+padding:0
+}
+
+html{
+scroll-behavior:smooth
+}
+
+body{
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#080b18,#11152b,#17132d);
+color:#e8edf7;
+min-height:100vh
+}
+
+header{
+background:rgba(8,11,24,.92);
+color:white;
+padding:20px 7%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:10;
+border-bottom:1px solid #292e49;
+backdrop-filter:blur(10px)
+}
+
+.logo{
+font-size:21px;
+font-weight:bold
+}
+
+.logo span{
+color:#7c83ff
+}
+
+nav a{
+color:#aeb6cc;
+text-decoration:none;
+margin-left:22px;
+font-size:13px
+}
+
+nav a:hover{
+color:white
+}
+
+.hero{
+padding:80px 7%;
+background:
+radial-gradient(circle at 80% 20%,#373477 0,transparent 35%),
+radial-gradient(circle at 20% 80%,#173c5e 0,transparent 35%),
+#080b18;
+color:white;
+border-bottom:1px solid #292e49
+}
+
+.hero small{
+color:#8d91ff;
+font-weight:bold;
+letter-spacing:2px
+}
+
+.hero h1{
+font-size:45px;
+max-width:700px;
+margin:15px 0
+}
+
+.hero p{
+color:#aeb6cc;
+max-width:650px;
+line-height:1.7
+}
+
+.container{
+width:86%;
+margin:35px auto
+}
+
+.project{
+background:rgba(20,24,43,.88);
+border:1px solid #303652;
+border-radius:14px;
+padding:25px;
+margin-bottom:30px;
+box-shadow:0 15px 40px rgba(0,0,0,.2)
+}
+
+.project-title{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px
+}
+
+.project-title h2{
+font-size:24px;
+color:#f1f4fb
+}
+
+.tag{
+background:#25264d;
+color:#9da2ff;
+padding:6px 10px;
+border-radius:15px;
+font-size:10px;
+font-weight:bold
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:14px;
+margin-bottom:20px
+}
+
+.card{
+background:#171c32;
+border:1px solid #303652;
+padding:18px;
+border-radius:10px
+}
+
+.card span{
+font-size:10px;
+color:#8993ad;
+font-weight:bold
+}
+
+.card h3{
+font-size:25px;
+margin-top:8px;
+color:white
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:20px
+}
+
+.box{
+border:1px solid #303652;
+background:#151a2e;
+border-radius:10px;
+padding:20px
+}
+
+.box h3{
+margin-bottom:15px;
+color:#f1f4fb
+}
+
+label{
+display:block;
+font-size:11px;
+font-weight:bold;
+color:#9ca7bd;
+margin:11px 0 5px
+}
+
+input,select,textarea{
+width:100%;
+padding:10px;
+border:1px solid #343b59;
+border-radius:7px;
+outline:none;
+font-family:inherit;
+background:#0f1426;
+color:white
+}
+
+input::placeholder,
+textarea::placeholder{
+color:#68738c
+}
+
+textarea{
+height:120px;
+resize:vertical
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+border-color:#737aff
+}
+
+button{
+border:none;
+border-radius:7px;
+padding:10px 15px;
+cursor:pointer;
+font-weight:bold
+}
+
+.primary{
+background:linear-gradient(135deg,#6366f1,#8b5cf6);
+color:white
+}
+
+.primary:hover{
+opacity:.9
+}
+
+.full{
+width:100%;
+margin-top:15px
+}
+
+.result{
+background:linear-gradient(145deg,#11162a,#1b1d3a);
+color:white;
+border:1px solid #34395c;
+border-radius:10px;
+padding:20px
+}
+
+.result h3{
+margin:10px 0
+}
+
+.result p{
+color:#aeb6cc;
+font-size:12px;
+line-height:1.6
+}
+
+.risk{
+font-size:45px;
+font-weight:bold;
+color:#8d91ff
+}
+
+.progress{
+height:9px;
+background:#292f49;
+border-radius:10px;
+margin:15px 0;
+overflow:hidden
+}
+
+.progress span{
+display:block;
+height:100%;
+width:0;
+background:linear-gradient(90deg,#6366f1,#a78bfa);
+transition:.5s
+}
+
+.flag{
+background:#202640;
+border:1px solid #343b59;
+padding:10px;
+border-radius:7px;
+font-size:11px;
+margin-top:8px;
+color:#c8cee0
+}
+
+.expense{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:12px 0;
+border-bottom:1px solid #292f43
+}
+
+.expense:last-child{
+border-bottom:none
+}
+
+.expense small{
+display:block;
+color:#7f8aa2;
+margin-top:3px
+}
+
+.delete{
+background:none;
+color:#ff7272;
+padding:5px
+}
+
+.category{
+margin:15px 0
+}
+
+.category-top{
+display:flex;
+justify-content:space-between;
+font-size:11px;
+margin-bottom:5px;
+color:#cbd2e2
+}
+
+.bar{
+height:8px;
+background:#292f49;
+border-radius:10px;
+overflow:hidden
+}
+
+.bar span{
+display:block;
+height:100%;
+background:linear-gradient(90deg,#6366f1,#8b5cf6)
+}
+
+.ai{
+background:
+radial-gradient(circle at 90% 10%,#29245c 0,transparent 35%),
+#11162a;
+color:white;
+padding:20px;
+border:1px solid #34395c;
+border-radius:10px
+}
+
+.ai h3{
+color:#a5a8ff;
+margin-bottom:8px
+}
+
+.ai p{
+color:#aeb6cc;
+font-size:12px;
+line-height:1.7
+}
+
+.resume-score{
+text-align:center;
+padding:20px
+}
+
+.resume-score strong{
+font-size:55px;
+color:#8d91ff
+}
+
+.skill{
+display:inline-block;
+background:#25264d;
+color:#a5a8ff;
+padding:7px 10px;
+border-radius:15px;
+font-size:10px;
+margin:4px
+}
+
+footer{
+text-align:center;
+padding:30px;
+color:#6f7a93;
+font-size:11px
+}
+
+.empty{
+color:#7d879d;
+font-size:12px;
+padding:15px 0
+}
+
+@media(max-width:800px){
+
+header{
+display:block
+}
+
+nav{
+margin-top:15px
+}
+
+nav a{
+margin:0 15px 0 0
+}
+
+.hero h1{
+font-size:32px
+}
+
+.stats,
+.grid{
+grid-template-columns:1fr 1fr
+}
+
+}
+
+@media(max-width:550px){
+
+.stats,
+.grid{
+grid-template-columns:1fr
+}
+
+.container{
+width:92%
+}
+
+.project-title{
+display:block
+}
+
+.tag{
+display:inline-block;
+margin-top:10px
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+AI<span>ProjectHub</span>
+</div>
+
+<nav>
+<a href="#medical">Medical AI</a>
+<a href="#expense">Expense AI</a>
+<a href="#resume">Resume AI</a>
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<small>AI PROJECT PORTFOLIO</small>
+
+<h1>
+Three practical AI projects in one application.
+</h1>
+
+<p>
+A portfolio project hub containing medical bill auditing,
+personal expense intelligence and AI-based resume analysis.
+</p>
+
+</section>
+
+
+<div class="container">
+
+
+<!-- PROJECT 1 -->
+
+<section class="project" id="medical">
+
+<div class="project-title">
+
+<h2>01. MedGuard AI</h2>
+
+<span class="tag">
+MEDICAL BILL AUDITOR
+</span>
+
+</div>
+
+
+<div class="stats">
+
+<div class="card">
+<span>BILLS AUDITED</span>
+<h3 id="billCount">1248</h3>
+</div>
+
+<div class="card">
+<span>SUSPICIOUS BILLS</span>
+<h3 id="suspicious">87</h3>
+</div>
+
+<div class="card">
+<span>AVERAGE RISK</span>
+<h3>7.2%</h3>
+</div>
+
+<div class="card">
+<span>REVIEWED</span>
+<h3>92%</h3>
+</div>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="box">
+
+<h3>
+Analyze Medical Bill
+</h3>
+
+<label>
+Provider
+</label>
+
+<input
+id="provider"
+placeholder="CityCare Hospital"
+>
+
+
+<label>
+Patient ID
+</label>
+
+<input
+id="patient"
+placeholder="P-1048"
+>
+
+
+<label>
+Consultation Charges
+</label>
+
+<input
+id="consultation"
+type="number"
+value="1000"
+>
+
+
+<label>
+Test Charges
+</label>
+
+<input
+id="testCharge"
+type="number"
+value="2500"
+>
+
+
+<label>
+Medicine Charges
+</label>
+
+<input
+id="medicineCharge"
+type="number"
+value="3500"
+>
+
+
+<label>
+Other Charges
+</label>
+
+<input
+id="otherCharge"
+type="number"
+value="500"
+>
+
+
+<label>
+Test Quantity
+</label>
+
+<input
+id="testQuantity"
+type="number"
+value="2"
+>
+
+
+<label>
+Medicine Quantity
+</label>
+
+<input
+id="medicineQuantity"
+type="number"
+value="3"
+>
+
+
+<button
+class="primary full"
+onclick="auditBill()"
+>
+Run AI Audit
+</button>
+
+</div>
+
+
+<div class="result">
+
+<small>
+AUDIT RESULT
+</small>
+
+<div
+class="risk"
+id="riskScore"
+>
+--
+</div>
+
+<h3 id="riskTitle">
+Awaiting Bill
+</h3>
+
+<p id="riskText">
+Enter bill details and run the audit.
+</p>
+
+<div class="progress">
+
+<span id="riskBar"></span>
+
+</div>
+
+<div id="billFlags"></div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- PROJECT 2 -->
+
+<section class="project" id="expense">
+
+<div class="project-title">
+
+<h2>
+02. SpendWise AI
+</h2>
+
+<span class="tag">
+AI EXPENSE TRACKER
+</span>
+
+</div>
+
+
+<div class="stats">
+
+<div class="card">
+<span>MONTHLY INCOME</span>
+<h3>₹50,000</h3>
+</div>
+
+<div class="card">
+<span>TOTAL SPENDING</span>
+<h3 id="totalExpense">
+₹0
+</h3>
+</div>
+
+<div class="card">
+<span>BALANCE</span>
+<h3 id="balance">
+₹50,000
+</h3>
+</div>
+
+<div class="card">
+<span>SAVING RATE</span>
+<h3 id="savingRate">
+100%
+</h3>
+</div>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="box">
+
+<h3>
+Add Expense
+</h3>
+
+<label>
+Expense Name
+</label>
+
+<input
+id="expenseName"
+placeholder="Food, shopping, travel"
+>
+
+
+<label>
+Amount
+</label>
+
+<input
+id="expenseAmount"
+type="number"
+placeholder="500"
+>
+
+
+<label>
+Category
+</label>
+
+<select id="expenseCategory">
+
+<option>Food</option>
+<option>Transport</option>
+<option>Shopping</option>
+<option>Bills</option>
+<option>Education</option>
+<option>Entertainment</option>
+<option>Health</option>
+<option>Other</option>
+
+</select>
+
+
+<button
+class="primary full"
+onclick="addExpense()"
+>
+Add Expense
+</button>
+
+</div>
+
+
+<div class="box">
+
+<h3>
+Category Analysis
+</h3>
+
+<div id="categories">
+
+<div class="empty">
+Add expenses to see analysis.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="box"
+style="margin-top:20px"
+>
+
+<h3>
+Expense History
+</h3>
+
+<div id="expenseList">
+
+<div class="empty">
+No expenses yet.
+</div>
+
+</div>
+
+</div>
+
+
+<div
+class="ai"
+style="margin-top:20px"
+>
+
+<h3>
+✦ AI Spending Insight
+</h3>
+
+<p id="expenseInsight">
+
+Add expenses and the AI engine will analyze
+your spending patterns.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- PROJECT 3 -->
+
+<section
+class="project"
+id="resume"
+>
+
+<div class="project-title">
+
+<h2>
+03. ResumeAI
+</h2>
+
+<span class="tag">
+AI RESUME ANALYZER
+</span>
+
+</div>
+
+
+<div class="grid">
+
+
+<div class="box">
+
+<h3>
+Analyze Your Resume
+</h3>
+
+
+<label>
+Your Name
+</label>
+
+<input
+id="resumeName"
+placeholder="Your Name"
+>
+
+
+<label>
+Target Job
+</label>
+
+<input
+id="jobRole"
+placeholder="Software Developer"
+>
+
+
+<label>
+Resume Content
+</label>
+
+<textarea
+id="resumeText"
+placeholder="Paste your resume content here..."
+></textarea>
+
+
+<button
+class="primary full"
+onclick="analyzeResume()"
+>
+Analyze Resume
+</button>
+
+</div>
+
+
+<div class="box resume-score">
+
+<div class="label">
+AI RESUME SCORE
+</div>
+
+<strong id="resumeScore">
+--
+</strong>
+
+<p id="resumeResult">
+Submit your resume to receive an analysis.
+</p>
+
+<div
+id="resumeSkills"
+style="margin-top:15px"
+></div>
+
+</div>
+
+
+</div>
+
+
+<div
+class="ai"
+style="margin-top:20px"
+>
+
+<h3>
+✦ AI Career Suggestions
+</h3>
+
+<p id="careerAdvice">
+
+Your personalized suggestions will appear here
+after resume analysis.
+
+</p>
+
+</div>
+
+</section>
+
+</div>
+
+
+<footer>
+
+AI ProjectHub · Portfolio Demonstration · HTML CSS JavaScript
+
+</footer>
+
+
+
+<script>
+
+let expenses=JSON.parse(
+localStorage.getItem("portfolioExpenses")
+)||[];
+
+const income=50000;
+
+
+function auditBill(){
+
+let consultation=Number(
+document.getElementById("consultation").value
+);
+
+let tests=Number(
+document.getElementById("testCharge").value
+);
+
+let medicines=Number(
+document.getElementById("medicineCharge").value
+);
+
+let other=Number(
+document.getElementById("otherCharge").value
+);
+
+let testQty=Number(
+document.getElementById("testQuantity").value
+);
+
+let medicineQty=Number(
+document.getElementById("medicineQuantity").value
+);
+
+
+let total=
+consultation+
+tests+
+medicines+
+other;
+
+
+let score=0;
+let flags=[];
+
+
+if(tests>7000){
+
+score+=25;
+
+flags.push(
+"High test charges detected"
+);
+
+}
+
+
+if(medicines>10000){
+
+score+=20;
+
+flags.push(
+"High medicine charges detected"
+);
+
+}
+
+
+if(testQty>=8){
+
+score+=20;
+
+flags.push(
+"Unusual test quantity detected"
+);
+
+}
+
+
+if(medicineQty>=15){
+
+score+=15;
+
+flags.push(
+"Unusual medicine quantity detected"
+);
+
+}
+
+
+if(total>25000){
+
+score+=15;
+
+flags.push(
+"High total bill amount"
+);
+
+}
+
+
+if(other>total*.3){
+
+score+=10;
+
+flags.push(
+"Other charges are unusually high"
+);
+
+}
+
+
+score=Math.min(score,100);
+
+
+document.getElementById(
+"riskScore"
+).textContent=
+score+"/100";
+
+
+document.getElementById(
+"riskBar"
+).style.width=
+score+"%";
+
+
+let title="Low Risk";
+
+let text=
+"No major billing anomalies were detected.";
+
+
+if(score>=60){
+
+title="High Risk";
+
+text=
+"Multiple suspicious billing patterns were detected. Manual review is recommended.";
+
+}
+else if(score>=30){
+
+title="Needs Review";
+
+text=
+"Some unusual billing patterns were detected.";
+
+}
+
+
+document.getElementById(
+"riskTitle"
+).textContent=title;
+
+
+document.getElementById(
+"riskText"
+).textContent=text;
+
+
+if(flags.length===0){
+
+document.getElementById(
+"billFlags"
+).innerHTML=
+'<div class="flag">✓ No major anomalies detected.</div>';
+
+}
+else{
+
+document.getElementById(
+"billFlags"
+).innerHTML=
+
+flags.map(flag=>
+`<div class="flag">⚠ ${flag}</div>`
+).join("");
+
+}
+
+
+let count=Number(
+document.getElementById(
+"billCount"
+).textContent
+);
+
+
+document.getElementById(
+"billCount"
+).textContent=
+count+1;
+
+
+if(score>=60){
+
+let suspicious=Number(
+document.getElementById(
+"suspicious"
+).textContent
+);
+
+document.getElementById(
+"suspicious"
+).textContent=
+suspicious+1;
+
+}
+
+}
+
+
+
+function addExpense(){
+
+let name=document.getElementById(
+"expenseName"
+).value;
+
+let amount=Number(
+document.getElementById(
+"expenseAmount"
+).value
+);
+
+let category=document.getElementById(
+"expenseCategory"
+).value;
+
+
+if(!name||amount<=0){
+
+alert(
+"Please enter a valid expense."
+);
+
+return;
+
+}
+
+
+expenses.unshift({
+
+id:Date.now(),
+name:name,
+amount:amount,
+category:category
+
+});
+
+
+localStorage.setItem(
+"portfolioExpenses",
+JSON.stringify(expenses)
+);
+
+
+document.getElementById(
+"expenseName"
+).value="";
+
+
+document.getElementById(
+"expenseAmount"
+).value="";
+
+
+renderExpenses();
+
+}
+
+
+
+function renderExpenses(){
+
+let total=expenses.reduce(
+(sum,item)=>sum+item.amount,0
+);
+
+
+let balance=income-total;
+
+
+let saving=
+Math.max(balance,0)/income*100;
+
+
+document.getElementById(
+"totalExpense"
+).textContent=
+"₹"+total.toLocaleString("en-IN");
+
+
+document.getElementById(
+"balance"
+).textContent=
+"₹"+Math.max(balance,0)
+.toLocaleString("en-IN");
+
+
+document.getElementById(
+"savingRate"
+).textContent=
+saving.toFixed(1)+"%";
+
+
+if(expenses.length===0){
+
+document.getElementById(
+"expenseList"
+).innerHTML=
+'<div class="empty">No expenses yet.</div>';
+
+
+document.getElementById(
+"categories"
+).innerHTML=
+'<div class="empty">Add expenses to see analysis.</div>';
+
+
+document.getElementById(
+"expenseInsight"
+).textContent=
+"Add expenses and the AI engine will analyze your spending patterns.";
+
+return;
+
+}
+
+
+document.getElementById(
+"expenseList"
+).innerHTML=
+
+expenses.map(item=>`
+
+<div class="expense">
+
+<div>
+
+<strong>
+${item.name}
+</strong>
+
+<small>
+${item.category}
+</small>
+
+</div>
+
+<div>
+
+<strong>
+₹${item.amount.toLocaleString("en-IN")}
+</strong>
+
+<button
+class="delete"
+onclick="deleteExpense(${item.id})"
+>
+×
+</button>
+
+</div>
+
+</div>
+
+`).join("");
+
+
+let totals={};
+
+
+expenses.forEach(item=>{
+
+totals[item.category]=
+(totals[item.category]||0)+item.amount;
+
+});
+
+
+document.getElementById(
+"categories"
+).innerHTML=
+
+Object.entries(totals)
+.sort((a,b)=>b[1]-a[1])
+.map(([category,amount])=>{
+
+let percent=
+amount/total*100;
+
+return `
+
+<div class="category">
+
+<div class="category-top">
+
+<span>
+${category}
+</span>
+
+<strong>
+₹${amount.toLocaleString("en-IN")}
+</strong>
+
+</div>
+
+<div class="bar">
+
+<span
+style="width:${percent}%"
+></span>
+
+</div>
+
+</div>
+
+`;
+
+}).join("");
+
+
+let top=
+Object.entries(totals)
+.sort((a,b)=>b[1]-a[1])[0];
+
+
+let percent=
+top[1]/total*100;
+
+
+let message="";
+
+
+if(total>30000){
+
+message=
+`Your spending has crossed the ₹30,000 budget. ${top[0]} is your largest expense category. Consider reducing unnecessary spending.`;
+
+}
+else if(total>24000){
+
+message=
+`You have used ${((total/30000)*100).toFixed(1)}% of your budget. Keep an eye on ${top[0]} expenses.`;
+
+}
+else{
+
+message=
+`Your spending is currently within budget. ${top[0]} accounts for ${percent.toFixed(1)}% of your total spending.`;
+
+}
+
+
+document.getElementById(
+"expenseInsight"
+).textContent=message;
+
+}
+
+
+
+function deleteExpense(id){
+
+expenses=expenses.filter(
+item=>item.id!==id
+);
+
+
+localStorage.setItem(
+"portfolioExpenses",
+JSON.stringify(expenses)
+);
+
+
+renderExpenses();
+
+}
+
+
+
+function analyzeResume(){
+
+let name=document.getElementById(
+"resumeName"
+).value;
+
+let role=document.getElementById(
+"jobRole"
+).value;
+
+let text=document.getElementById(
+"resumeText"
+).value.toLowerCase();
+
+
+if(!text){
+
+alert(
+"Please paste your resume first."
+);
+
+return;
+
+}
+
+
+let score=40;
+
+let skills=[];
+
+
+const keywords=[
+
+"javascript",
+"html",
+"css",
+"python",
+"java",
+"c++",
+"react",
+"sql",
+"git",
+"machine learning",
+"data structures",
+"api",
+"node"
+
+];
+
+
+keywords.forEach(skill=>{
+
+if(text.includes(skill)){
+
+score+=4;
+
+skills.push(skill);
+
+}
+
+});
+
+
+if(text.includes("project")){
+
+score+=5;
+
+}
+
+
+if(text.includes("experience")){
+
+score+=5;
+
+}
+
+
+if(text.includes("education")){
+
+score+=3;
+
+}
+
+
+if(text.length>1500){
+
+score+=5;
+
+}
+
+
+score=Math.min(score,100);
+
+
+document.getElementById(
+"resumeScore"
+).textContent=score;
+
+
+let result=
+"Needs improvement.";
+
+
+if(score>=80){
+
+result=
+"Strong resume for your target role.";
+
+}
+else if(score>=60){
+
+result=
+"Good resume with some areas to improve.";
+
+}
+
+
+document.getElementById(
+"resumeResult"
+).textContent=
+result;
+
+
+document.getElementById(
+"resumeSkills"
+).innerHTML=
+
+skills.length
+
+?skills.map(skill=>
+`<span class="skill">${skill}</span>`
+).join("")
+
+:
+'<span class="skill">Add technical skills</span>';
+
+
+let advice="";
+
+
+if(skills.length<4){
+
+advice=
+`${name||"Your resume"} could be improved by adding more relevant technical skills for ${role||"your target role"}.`;
+
+}
+else if(!text.includes("project")){
+
+advice=
+"Add 2–3 detailed projects with technologies used, your contribution and measurable results.";
+
+}
+else if(!text.includes("experience")){
+
+advice=
+"Consider adding internship, freelance, volunteer or practical experience if available.";
+
+}
+else{
+
+advice=
+"Your resume has a good technical foundation. Focus on measurable achievements and tailoring keywords to each job description.";
+
+}
+
+
+document.getElementById(
+"careerAdvice"
+).textContent=advice;
+
+}
+
+
+renderExpenses();
+
+</script>
+
+</body>
+</html>
